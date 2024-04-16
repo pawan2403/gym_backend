@@ -5,7 +5,7 @@ const server = http.createServer(app);
 // const functions = require("firebase-functions")
 const port = process.env.PORT || 4000;
 
-server.listen(port,'0.0.0.0', ()=>{
+server.listen(10000,'0.0.0.0', ()=>{
     console.log(`connection is setup at ${process.env.PORT}`)
 })
 
