@@ -14,6 +14,5 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 });
 
 app.use(cors());
-app.use('/user',router);
-
+app.use('/auth/api/v1',router);
 module.exports = app;

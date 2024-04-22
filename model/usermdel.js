@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     packages: {
-        type: [String],
+        type: String,
         required: true,
     },
     status: {

@@ -22,14 +22,14 @@ router.get('/count', Control.getUserCount);
 
 router.get('/active/count', Control.getActiveUsersCount);
 
-
-router.patch('/update/:id',middleware.verifyToken ,Control.UpdateUser);
+router.patch('/update/:id', Control.userUpdate);
+// router.patch('/update/:id',middleware.verifyToken ,Control.UpdateUser);
 
 // router.get('/checkEmail/:email', Control.checkEmail);
 
 router.get('/getId', Control.findById);
 
-router.put('/modify/:id',middleware.verifyToken ,Control.UpdateUser);
+// router.put('/modify/:id',middleware.verifyToken ,Control.UpdateUser);
 
 router.patch('/verify',Control.verifyEmail);
 

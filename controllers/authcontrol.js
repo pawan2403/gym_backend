@@ -13,7 +13,7 @@ class AuthControl {
         // this.checkEmail = this.checkEmail.bind(this);
         this.signIn = this.signIn.bind(this);
         this.addUser = this.addUser.bind(this);
-        this.UpdateUser = this.UpdateUser.bind(this);
+        this.userUpdate = this.userUpdate.bind(this);
         this.findById = this.findById.bind(this);
         this.fetchAllUser = this.fetchAllUser.bind(this);
         this.filterUsers = this.filterUsers.bind(this);
@@ -152,14 +152,18 @@ class AuthControl {
         }
     }
 
-    async UpdateUser(req, res, next) {
+    async userUpdate(req, res, next) {
         try {
             const id = req.params.id
             const data = req.body
-            console.log('dataaaaaaaa-----===', data)
-            const result = await this.Auth.updateUser(id, data)
-            if (result) {
-                res.status(200).send(result)
+            console.log('UPDATE_USER_DATA id:', id);
+            console.log('UPDATE_USER_DATA data:', data);
+            const response = await this.Auth.updateUsers(id, data)
+            if (response) {
+                res.status(200).send({
+                    status: "SUCCESS",
+                    Data: response
+                })
             }
             else {
                 res.status(500).send('Something Went Wrong')

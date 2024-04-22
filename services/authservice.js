@@ -108,27 +108,27 @@ class AuthService {
             const totalUsers = result.length;
 
              // Filtering platinum users
-             const platinumUsers = result.filter((user) => user.packages == 'platinum');
+             const platinumUsers = result.filter((user) => user.packages == '12 Month');
              const totalPlatinumUsers = platinumUsers.length;
 
             // Filtering Diamond users
-            const diamondUsers = result.filter((user) => user.packages == 'diamond');
+            const diamondUsers = result.filter((user) => user.packages == '6 Month');
             const totalDiamondUsers = diamondUsers.length;
 
             // Filtering Gold users
-            const goldUsers = result.filter(user => user.packages == 'gold');
+            const goldUsers = result.filter(user => user.packages == '3 Month');
             const totalGoldUsers = goldUsers.length;
 
              // Filtering silver users
-             const silverUsers = result.filter((user) => user.packages == 'silver');
+             const silverUsers = result.filter((user) => user.packages == '1 Month');
              const totalSilverUsers = silverUsers.length;
 
               // Filtering active users
               const activeUsers = result.filter((user) => user.status == 'active');
               const totalActiveUsers = activeUsers.length;
 
-               // Filtering active users
-               const inactiveUsers = result.filter((user) => user.status == 'In-active');
+               // Filtering In-active users
+               const inactiveUsers = result.filter((user) => user.status == 'in-active');
                const totalInactiveUsers = inactiveUsers.length;
 
             console.log('Total Users:', totalUsers);
@@ -152,10 +152,10 @@ class AuthService {
     async getActiveUsersCount() {
         try {
             // Query to filter active users with different packages
-            let activeDiamondQuery = { status: 'active', packages: 'diamond' };
-            let activePlatinumQuery = { status: 'active', packages: 'platinum' };
-            let activeGoldQuery = { status: 'active', packages: 'gold' };
-            let activeSilverQuery = { status: 'active', packages: 'silver' };
+            let activeDiamondQuery = { status: 'active', packages: '6 Month' };
+            let activePlatinumQuery = { status: 'active', packages: '12 Month' };
+            let activeGoldQuery = { status: 'active', packages: '3 Month' };
+            let activeSilverQuery = { status: 'active', packages: '1 Month' };
     
             // Fetching users based on different packages
             const activeDiamondResult = await this.userModel.find(activeDiamondQuery);
@@ -177,6 +177,16 @@ class AuthService {
             };
         } catch (err) {
             throw err;
+        }
+    }
+
+    async updateUsers(id, updatedUser) {
+        console.log("UPDATE_USER_DATA", id, updatedUser)
+        try {
+            const result = await this.userModel.updateOne({ email: id }, { $set: updatedUser });
+            return result;
+        } catch (err) {
+            throw err
         }
     }
     
